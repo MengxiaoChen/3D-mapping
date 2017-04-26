@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -n "$1" ]
+then
+T=$1
+else
+T=5
+fi
+
+echo " ### plotting position x y z [m] ###"
+echo " ### plotting velocities x y z [m/s] ###"
+echo " ### plotting acceleration bias x y z [m/s^2] ###"
+echo " ### plotting scale ###"
+echo " ### buffer = " $T "sec"
+
+rqt_plot msf_core/state_out/data[0]:data[1]:data[2] 
+
