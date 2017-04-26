@@ -1,5 +1,4 @@
 # 3D-mapping
-Real-time 3D mapping using a 2D laser scanner and IMU-aided visual SLAM.
 
 Real-time 3D mapping using a 2D laser scanner with pose estimates from an IMU-aided visual SLAM system. 
 
@@ -18,6 +17,7 @@ As for ORB_SLAM2_mapping, the following libraries are used:
  1. Pangolin is used for visualization and user interface (dowload and install instructions can be found at: https://github.com/stevenlovegrove/Pangolin).
  2. OpenCV to manipulate images and features. Dowload and install instructions can be found at: http://opencv.org. Required at leat 2.4.3. Tested with OpenCV 2.4.11 and OpenCV 3.2.
  3. DBoW2 library is used to perform place recognition and g2o library is used to perform non-linear optimizations. Both modified libraries (which are BSD) are included in the Thirdparty folder. 
+    
     Eigen3 is required by g2o (download and install instructions can be found at: http://eigen.tuxfamily.org. Required at least 3.1.0).
 
 ethzasl_xsens_driver is a ROS Driver for XSens MT/MTi/MTi-G devices.

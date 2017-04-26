@@ -1,13 +1,18 @@
 # 3D-mapping
-Real-time 3D mapping using a 2D laser scanner and IMU-aided visual SLAM
+Real-time 3D mapping using a 2D laser scanner and IMU-aided visual SLAM.
+
 Real-time 3D mapping using a 2D laser scanner with pose estimates from an IMU-aided visual SLAM system. 
+
 Accurate motion estimation of a robot is achieved by visual-inertial fusion based on an extended Kalman filter (EKF). Range measurements scanned on the vertical plane are received constantly by a 2D laser scanner mounted on the robot, which are re-organized as point clouds in Cartesian space. With the pose estimates of the robot, the point clouds can be transformed into the world frame in real time. Furthermore,these point clouds received between two consecutive keyframes of the visual SLAM system are accumulated together into a unit relative to a keyframe, which can be corrected later by loop closing in visual SLAM. The 3D globally consistent map is built simultaneously by gathering these units of point clouds.
 
 This work is based on the previous work described in [1,2].
+
 [1] Raul Mur-Artal and Juan D Tardos. Orb-slam2: an open-source slam system for monocular, stereo and rgb-d cameras. arXiv preprint arXiv:1610.06475, 2016.
+
 [2] S Weiss and R Siegwart. Real-time metric state estimation for modular vision-inertial systems. In IEEE International Conference on Robotics and Automation, pages 4531–4537, 2011.
 
 ORB-SLAM2_mapping is a real-time SLAM library for Monocular, Stereo and RGB-D cameras that computes the camera trajectory and a sparse 3D reconstruction (in the stereo and RGB-D case with true scale). It is able to detect loops and relocalize the camera in real time. Real-time 3D mapping is achieved using laser scans with pose estimation from visual-inertial fusion.
+
 As for ORB_SLAM2_mapping, the following libraries are used:
 
  1. Pangolin is used for visualization and user interface (dowload and install instructions can be found at: https://github.com/stevenlovegrove/Pangolin).
