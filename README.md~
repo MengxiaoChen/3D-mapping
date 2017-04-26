@@ -17,4 +17,4 @@ As for ORB_SLAM2_mapping, the following libraries are used:
 
 ethzasl_xsens_driver is a ROS Driver for XSens MT/MTi/MTi-G devices.
 
-ethzasl_msf is a modular framework for multi sensor fusion based on an Extended Kalman Filter (EKF).
+ethzasl_msf is a modular framework for multi sensor fusion based on an Extended Kalman Filter (EKF)
