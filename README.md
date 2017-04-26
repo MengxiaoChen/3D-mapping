@@ -1,4 +1,4 @@
-# 3D-mapping
+# Real-time 3D-mapping using a 2D laser scanner and IMU-aided visual SLAM
 
 Real-time 3D mapping using a 2D laser scanner with pose estimates from an IMU-aided visual SLAM system. 
 
@@ -6,7 +6,7 @@ Accurate motion estimation of a robot is achieved by visual-inertial fusion base
 
 This work is based on the previous work described in [1,2].
 
-[1] Raul Mur-Artal and Juan D Tardos. Orb-slam2: an open-source slam system for monocular, stereo and rgb-d cameras. arXiv preprint arXiv:1610.06475, 2016.
+[1] Raul Mur-Artal and Juan D Tardos. ORB-SLAM2: an open-source slam system for monocular, stereo and rgb-d cameras. arXiv preprint arXiv:1610.06475, 2016.
 
 [2] S Weiss and R Siegwart. Real-time metric state estimation for modular vision-inertial systems. In IEEE International Conference on Robotics and Automation, pages 4531–4537, 2011.
 
@@ -23,3 +23,21 @@ As for ORB_SLAM2_mapping, the following libraries are used:
 ethzasl_xsens_driver is a ROS Driver for XSens MT/MTi/MTi-G devices.
 
 ethzasl_msf is a modular framework for multi sensor fusion based on an Extended Kalman Filter (EKF).
+
+Make sure that all of our nodes' times are based off of simulation time
+
+`rosparam set /use_sim_time true`
+
+Running RGB_D Node in visual SLAM
+
+`roslaunch ORB_SLAM2 test.launch`
+
+Running the multi sensor fusion Framework
+
+`roslaunch msf_updates  pose_sensor.launch`
+
+Playing back the bag
+
+`rosbag play --clock 001.bag`
+
+
