@@ -70,6 +70,7 @@ ${LIBS}
 
 # Node for RGB-D camera
 rosbuild_add_executable(RGBD
+src/ros_mapping.cpp
 src/ros_rgbd.cc
 )
 

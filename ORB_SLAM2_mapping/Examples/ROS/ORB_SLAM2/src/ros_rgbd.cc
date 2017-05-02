@@ -34,16 +34,19 @@
 #include  "geometry_msgs/PoseWithCovariance.h"
 #include  "geometry_msgs/PoseWithCovarianceStamped.h"
 
+#include "ros_mapping.h"
+
 //cmxlaser:
 //#ifndef SENSOR_MSGS_POINT_CLOUD_CONVERSION_H
 //#define SENSOR_MSGS_POINT_CLOUD_CONVERSION_H
 
-#include "sensor_msgs/LaserScan.h"
+//#include "sensor_msgs/LaserScan.h"
 #include "tf/message_filter.h"
 #include "tf/transform_listener.h"
 #include "tf/tfMessage.h"
-#include "sensor_msgs/LaserScan.h"
-#include "laser_geometry.h"
+
+//#include "laser_geometry.h"
+
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/PointCloud.h>
 //#include <sensor_msgs/point_field_conversion.h>
@@ -64,14 +67,16 @@
 #include  <tf/transform_broadcaster.h>
 #include "tf/LinearMath/Transform.h"
 //cmx:
-#include "System.h"
-#include "Tracking.h"
+//#include "System.h"
+#include "../../../include/Tracking.h"
 
 //cmxlaser:
 //#include "Frame.h"
 #include "KeyFrame.h"
 #include "KeyFrameDatabase.h"
-using namespace laser_geometry;
+
+
+// using namespace laser_geometry;
 using namespace ORB_SLAM2;
 using namespace std;
 
@@ -135,7 +140,7 @@ void ImageGrabber::attitudeCallback(const sensor_msgs::ImuConstPtr& msg)
      mAttitudelock.unlock();
 
 }
-
+/*
 //cmxlaser:
 class PcProcess
 {
@@ -586,6 +591,14 @@ void PcProcess::ConvertToCloud(const string& fixed_frame_id, const sensor_msgs::
     pub_pointclouds_out_.publish(point_clouds_out);
 
 }
+*/
+
+//
+/// Creat ros-related mapping
+My_mapping::ros_mapping* ros_mapper;
+std::thread* mptMapping;
+tf::TransformBroadcaster* tfb_;
+
 
 int main(int argc, char **argv)
 {
@@ -607,8 +620,17 @@ int main(int argc, char **argv)
     const std::string&max_size_param_name="max_scans";
 
     ImageGrabber igb(&SLAM,nh);
+/*
     //cmxlaser:
     PcProcess pcp(max_size_param_name);
+*/
+//
+    /// setup ros viewer, a new thread
+    //???
+    ros_mapper = new My_mapping::ros_mapping(max_size_param_name,&SLAM);
+    mptMapping = new thread(&My_mapping::ros_mapping::run,ros_mapper);
+
+    tfb_ = new tf::TransformBroadcaster();
 
 //cmx
    // ros::Publisher pub_pose_world_;
@@ -625,7 +647,7 @@ int main(int argc, char **argv)
     sync.registerCallback(boost::bind(&ImageGrabber::GrabRGBD,&igb,_1,_2));
 
 
-
+/*
    ros::Rate loop_rate(10);
 
    KeyFrame* lastkf;
@@ -692,7 +714,7 @@ int main(int argc, char **argv)
         ros::spinOnce();
         loop_rate.sleep();
     }
-
+*/
 
     ros::spin();
 

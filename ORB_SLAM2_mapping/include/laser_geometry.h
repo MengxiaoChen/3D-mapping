@@ -354,17 +354,13 @@ namespace laser_geometry
       boost::mutex guv_mutex_;
     };
 
-}
+//}
 
-#endif //LASER_SCAN_UTILS_LASERSCAN_H
+//#endif //LASER_SCAN_UTILS_LASERSCAN_H
 
 
 
-namespace laser_geometry
-{
-
-  void
-    LaserProjection::projectLaser_ (const sensor_msgs::LaserScan& scan_in, sensor_msgs::PointCloud & cloud_out, double range_cutoff,
+  void  laser_geometry::LaserProjection::projectLaser_ (const sensor_msgs::LaserScan& scan_in, sensor_msgs::PointCloud & cloud_out, double range_cutoff,
                                    bool preservative, int mask)
   {
     boost::numeric::ublas::matrix<double> ranges(2, scan_in.ranges.size());
@@ -513,8 +509,7 @@ const boost::numeric::ublas::matrix<double>& LaserProjection::getUnitVectors_(do
       }
   };
 
-  void
-    LaserProjection::transformLaserScanToPointCloud_ (const std::string &target_frame, sensor_msgs::PointCloud &cloud_out, const sensor_msgs::LaserScan &scan_in,
+  void  LaserProjection::transformLaserScanToPointCloud_ (const std::string &target_frame, sensor_msgs::PointCloud &cloud_out, const sensor_msgs::LaserScan &scan_in,
                                                      tf::Transformer& tf, double range_cutoff, int mask)
   {
     cloud_out.header = scan_in.header;
@@ -783,36 +778,7 @@ const boost::numeric::ublas::matrix<double>& LaserProjection::getUnitVectors_(do
         ++count;
       }
 
-      /* TODO: Why was this done in this way, I don't get this at all, you end up with a ton of points with NaN values
-       * why can't you just leave them out?
-       *
-      // Invalid measurement?
-      if (scan_in.ranges[i] >= range_cutoff || scan_in.ranges[i] <= scan_in.range_min)
-      {
-        if (scan_in.ranges[i] != LASER_SCAN_MAX_RANGE)
-        {
-          for (size_t s = 0; s < cloud_out.fields.size (); ++s)
-            pstep[s] = bad_point;
-        }
-        else
-        {
-          // Kind of nasty thing:
-          //   We keep the oringinal point information for max ranges but set x to NAN to mark the point as invalid.
-          //   Since we still might need the x value we store it in the distance field
-          pstep[0] = bad_point;           // X -> NAN to mark a bad point
-          pstep[1] = co_sine_map (i, 1);  // Y
-          pstep[2] = 0;                   // Z
 
-          if (store_intensity)
-          {
-            pstep[3] = bad_point;           // Intensity -> NAN to mark a bad point
-            pstep[4] = co_sine_map (i, 0);  // Distance -> Misused to store the originnal X
-          }
-          else
-            pstep[3] = co_sine_map (i, 0);  // Distance -> Misused to store the originnal X
-        }
-      }
-      */
     }
 
     //resize if necessary
@@ -1048,4 +1014,8 @@ const boost::numeric::ublas::matrix<double>& LaserProjection::getUnitVectors_(do
                                     channel_options);
   }
 
-} //laser_geometry
+}
+
+#endif //LASER_SCAN_UTILS_LASERSCAN_H
+
+
